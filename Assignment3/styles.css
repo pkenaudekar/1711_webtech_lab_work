@@ -1,0 +1,23 @@
+@charset "utf-8";
+/* CSS Document */
+
+#transition img
+{
+	width: 15%;
+	height:auto;
+	border-radius: 50%;
+	animation-name: rotate; 
+    animation-duration: 10s; 
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+	position: relative;
+}
+
+
+@keyframes rotate {
+   0%  {transform: rotate3d(0,0,0,30deg);left: 0px;top: 0px;}
+  25%  {transform: rotate3d(20,10,30,45deg);left: 100px;top: 100px;}
+  50%  {transform: rotate3d(40,30,50,80deg);left: 250px;top: 250px;}
+  75%  {transform: rotate3d(60,40,60,180deg);left: 400px;top: 400px;}
+  100% {transform: rotate3d(80,50,80,50deg);left: 550px;top: 550px;}
+}
