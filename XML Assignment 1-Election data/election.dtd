@@ -1,0 +1,34 @@
+<!ELEMENT elections (political_party,assembly,contestants,poll_results)>
+
+<!ELEMENT political_party (party+)>
+<!ELEMENT party (full_name,elect_symbol)>
+<!ATTLIST party party_acronym ID #REQUIRED >
+<!ELEMENT full_name (#PCDATA)>
+<!ELEMENT elect_symbol (#PCDATA)>
+
+<!ELEMENT assembly (constituency+)>
+<!ELEMENT constituency (const_name,const_part_no,electors)>
+<!ATTLIST constituency ac_no ID #REQUIRED >
+<!ELEMENT const_name (#PCDATA)>
+<!ELEMENT const_part_no (#PCDATA)>
+<!ELEMENT electors (#PCDATA)>
+
+<!ELEMENT contestants (candidate+)>
+<!ELEMENT candidate (c_name,c_party,gender,dob,con_fr)>
+<!ATTLIST candidate c_id ID #REQUIRED >
+<!ELEMENT c_name (#PCDATA)>
+<!ELEMENT c_party (#PCDATA)>
+<!ELEMENT gender (#PCDATA)>
+<!ELEMENT dob (#PCDATA)>
+<!ELEMENT con_fr (#PCDATA)>
+
+<!ELEMENT poll_results (const_result+)>
+<!ELEMENT const_result (party_result+)>
+<!ATTLIST const_result con_id IDREF #REQUIRED >
+<!ELEMENT party_result EMPTY>
+<!ATTLIST party_result 
+party_id IDREF #REQUIRED 
+can_id IDREF #REQUIRED 
+vote_count CDATA #IMPLIED>
+
+

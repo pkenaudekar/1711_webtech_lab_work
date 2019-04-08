@@ -1,0 +1,99 @@
+﻿<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		   targetNamespace="http://www.unigoa.ac.in/election"
+		   xmlns="http://www.unigoa.ac.in/election"
+		   elementFormDefault="qualified"
+>
+  <!-- political_party element+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  
+  <xs:complexType name = "PartyType">
+    <xs:sequence>
+      <xs:element name = "full_name" type = "xs:string"/>
+      <xs:element name = "elect_symbol" type = "xs:string"/>
+    </xs:sequence>
+    <xs:attribute name = "party_acronym" type = "xs:string" use="required"/>
+  </xs:complexType>
+  <xs:complexType name = "PoliticalPartyType">
+      <xs:sequence>
+        <xs:element name = "party" type = "PartyType" minOccurs = "0" maxOccurs = "unbounded" />
+      </xs:sequence>
+  </xs:complexType>
+
+<!-- assembly element+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  
+  <xs:complexType name = "ConstituencyType">
+    <xs:sequence>
+      <xs:element name = "const_name" type = "xs:string"/>
+      <xs:element name = "const_part_no" type = "xs:integer"/>
+      <xs:element name = "electors" type = "xs:integer"/>
+    </xs:sequence>
+    <xs:attribute name = "ac_no" type = "xs:integer" use="required"/>
+  </xs:complexType>
+  <xs:complexType name = "AssemblyType">
+    <xs:sequence>
+        <xs:element name = "constituency" type = "ConstituencyType" minOccurs = "0" maxOccurs = "unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+ <!-- contestants element+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  
+  <xs:simpleType name="DBOType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="((0[1-9]|[1-9])|[1-2][0-9]|3[01]) (January|February|March|April|May|June|July|August|September|October|November|December) (19|20)\d\d"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="GenderType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="Male|Female|Other"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name = "CandidateType">
+    <xs:sequence>
+      <xs:element name = "c_name" type = "xs:string"/>
+      <xs:element name = "c_party" type = "xs:string"/>
+      <xs:element name = "gender" type = "GenderType"/>
+      <xs:element name = "dob" type = "DBOType"/>
+      <xs:element name = "con_fr" type = "xs:string"/>
+    </xs:sequence>
+    <xs:attribute name = "c_id" type = "xs:integer" use="required"/>
+  </xs:complexType>
+  <xs:complexType name = "ContestantsType">
+    <xs:sequence>
+      <xs:element name = "candidate" type = "CandidateType" minOccurs = "0" maxOccurs = "unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- poll_results element+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <xs:simpleType name="PartIdType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name = "PartyResultType">
+    <xs:attribute name = "party_id" type = "PartIdType" use="required"/>
+    <xs:attribute name = "can_id" type = "xs:integer" use="required"/>
+    <xs:attribute name = "vote_count" type = "xs:integer" use="required"/>
+  </xs:complexType>
+  <xs:complexType name = "ConstResultType">
+    <xs:sequence>
+      <xs:element name = "party_result" type = "PartyResultType" minOccurs = "0" maxOccurs = "unbounded"/>
+    </xs:sequence>
+    <xs:attribute name = "con_id" type = "xs:integer" use="required"/>
+  </xs:complexType>
+  <xs:complexType name = "PollResultType">
+    <xs:sequence>
+        <xs:element name = "const_result" type = "ConstResultType" minOccurs = "0" maxOccurs = "unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <!-- elections element+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <xs:element name = "elections">
+    <xs:complexType>
+      <xs:sequence>     
+        <xs:element name="political_party" type="PoliticalPartyType"  minOccurs = "0" maxOccurs = "unbounded"/>
+        <xs:element name="assembly" type="AssemblyType" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="contestants" type="ContestantsType" minOccurs = "0" maxOccurs = "unbounded" />
+        <xs:element name="poll_results" type="PollResultType" minOccurs = "0" maxOccurs = "unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

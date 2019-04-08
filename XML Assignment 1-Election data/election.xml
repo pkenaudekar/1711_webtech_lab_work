@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="stylesheet.xml"?>
+
+<elections xmlns="http://www.unigoa.ac.in/election" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xsi:schemaLocation="http://www.unigoa.ac.in/election election.xsd">
+  
+  <political_party>
+    <party party_acronym="BJP">
+      <full_name>Bharatiya Janta Party</full_name>
+      <elect_symbol>Lotus</elect_symbol>
+    </party>
+    <party party_acronym="MGP">
+      <full_name>Maharashtrawadi Gomantak Party</full_name>
+      <elect_symbol>Lion</elect_symbol>
+    </party>
+    <party party_acronym="GFP">
+      <full_name>Goa Forward Party</full_name>
+      <elect_symbol>Coconut</elect_symbol>
+    </party>
+    <party party_acronym="NCP">
+      <full_name>Nationalist Congress Party</full_name>
+      <elect_symbol>Lotus</elect_symbol>
+    </party>
+    <party party_acronym="INC">
+      <full_name>Indian National Congress</full_name>
+      <elect_symbol>Watch</elect_symbol>
+    </party>
+  </political_party>
+  
+  <assembly>
+    <constituency ac_no="1">
+      <const_name>Mandrem</const_name>
+      <const_part_no>46</const_part_no>
+      <electors>31369</electors>
+    </constituency>
+    <constituency ac_no="2">
+      <const_name>Pernem</const_name>
+      <const_part_no>49</const_part_no>
+      <electors>31360</electors>
+    </constituency>
+    <constituency ac_no="3">
+      <const_name>Bhicholim</const_name>
+      <const_part_no>43</const_part_no>
+      <electors>25958</electors>
+    </constituency>
+    <constituency ac_no="4">
+      <const_name>Thivim</const_name>
+      <const_part_no>39</const_part_no>
+      <electors>26575</electors>
+    </constituency>
+    <constituency ac_no="5">
+      <const_name>Mapusa</const_name>
+      <const_part_no>42</const_part_no>
+      <electors>28808</electors>
+    </constituency>
+  </assembly>
+   
+  <contestants>
+    <candidate c_id="01">
+      <c_name>Dayanand Sopte</c_name>
+      <c_party>INC</c_party>
+      <gender>Male</gender>
+      <dob>2 April 1964</dob>
+      <con_fr>Mandrem</con_fr>
+    </candidate>
+    <candidate c_id="02">
+      <c_name>Laxmikant Parsekar</c_name>
+      <c_party>BJP</c_party>
+      <gender>Male</gender>
+      <dob>4 July 1956</dob>
+      <con_fr>Mandrem</con_fr>
+    </candidate>
+    <candidate c_id="03">
+      <c_name>Manohar Ajgaonkar</c_name>
+      <c_party>MGP</c_party>
+      <gender>Male</gender>
+      <dob>6 November 1954</dob>
+      <con_fr>Pernem</con_fr>
+    </candidate>
+    <candidate c_id="04">
+      <c_name>Rajendra Arlekar</c_name>
+      <c_party>BJP</c_party>
+      <gender>Male</gender>
+      <dob>23 April 1954</dob>
+      <con_fr>Pernem</con_fr>
+    </candidate>
+    <candidate c_id="05">
+      <c_name>Rajesh Patnekar</c_name>
+      <c_party>BJP</c_party>
+      <gender>Male</gender>
+      <dob>23 September 1963</dob>
+      <con_fr>Bicholim</con_fr>
+    </candidate>
+    <candidate c_id="06">
+      <c_name>Naresh Sawal</c_name>
+      <c_party>MGP</c_party>
+      <gender>Male</gender>
+      <dob>21 October 1961</dob>
+      <con_fr>Bicholim</con_fr>
+    </candidate>
+    <candidate c_id="07">
+      <c_name>Nilkanth Halarnkar</c_name>
+      <c_party>INC</c_party>
+      <gender>Male</gender>
+      <dob>10 August 1961</dob>
+      <con_fr>Tivim</con_fr>
+    </candidate>
+    <candidate c_id="08">
+      <c_name>Kiran Kandolkar</c_name>
+      <c_party>BJP</c_party>
+      <gender>Male</gender>
+      <dob>25 October 1977</dob>
+      <con_fr>Tivim</con_fr>
+    </candidate>
+    <candidate c_id="09">
+      <c_name>Francis Dsouza</c_name>
+      <c_party>BJP</c_party>
+      <gender>Male</gender>
+      <dob>4 October 1954</dob>
+      <con_fr>Mapusa</con_fr>
+    </candidate>
+    <candidate c_id="10">
+      <c_name>Vinod Fadke</c_name>
+      <c_party>MGP</c_party>
+      <gender>Male</gender>
+      <dob>20 March 1970</dob>
+      <con_fr>Mapusa</con_fr>
+    </candidate>
+  </contestants>
+  
+  <poll_results>
+    <const_result con_id="1">
+      <party_result party_id="INC" can_id="01" vote_count="16490"/>
+      <party_result party_id="BJP" can_id="02" vote_count="9371"/>
+    </const_result>
+    <const_result con_id="2">
+      <party_result party_id="MGP" can_id="03" vote_count="15745"/>
+      <party_result party_id="BJP" can_id="04" vote_count="9715"/>
+    </const_result>
+    <const_result con_id="3">
+      <party_result party_id="BJP" can_id="05" vote_count="10654"/>
+      <party_result party_id="MGP" can_id="06" vote_count="9988"/>
+    </const_result>
+    <const_result con_id="4">
+      <party_result party_id="INC" can_id="07" vote_count="11099"/>
+      <party_result party_id="BJP" can_id="08" vote_count="10304"/>
+    </const_result>
+    <const_result con_id="5">
+      <party_result party_id="BJP" can_id="09" vote_count="10957"/>
+      <party_result party_id="MGP" can_id="10" vote_count="4129"/>
+    </const_result>
+  </poll_results>
+  
+</elections>

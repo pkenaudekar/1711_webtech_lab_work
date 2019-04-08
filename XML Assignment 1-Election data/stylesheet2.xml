@@ -1,0 +1,62 @@
+<xsl:stylesheet version='1.0'
+          xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
+          xmlns:my="http://www.unigoa.ac.in/election" >
+
+  <xsl:template match="/">
+    <html>
+      <head>
+        <title>Election Results</title>
+      </head>
+      <body>
+        <div style="text-align:center">
+          <h1>ELECTION RESULTS</h1>
+          <br/>
+          <div style="text-align:left">
+            <table style="text-align:left;width:100%">
+              <xsl:for-each select="//my:const_result">
+                <!-- Print Constituency name -->
+                <tr><td style="width:3%"><xsl:number value="position()" format="1."/><b>Constituency: <xsl:value-of select="//my:const_name"/></b></td>
+                </tr>
+                <tr>
+                   <table border="1">
+                    <tr bgcolor="#9acd32">
+                      <th>Sr.No</th>
+                      <th>Candidate Name</th>
+                      <th>Party Name</th>
+                      <th>Votes</th>
+                      <th></th>
+                 </tr>
+                 <tr>
+                      <xsl:for-each select="//my:const_result">
+                        <tr>
+                          <td><xsl:number value="position()" format="1"/></td>
+                          <td><xsl:value-of select="//@can_id"/></td> 
+                          <td><xsl:value-of select="//@party_id" /></td>
+                          <td><xsl:value-of select="//@vote_count" /></td>
+                          <td><xsl:value-of select='Winner' /></td>
+                        </tr>  
+                      </xsl:for-each>
+                     </tr>
+                   <!--<xsl:for-each select="//my:poll_results">--> 
+                    <!--<xsl:for-each select="//my:const_result[@ac_no=@con_id]">  
+                      <tr>
+                        <td><xsl:value-of select = "@con_id"/></td> 
+                        <td><xsl:value-of select="@party_id" /></td>
+                        <td><xsl:value-of select="@vote_count" /></td>
+                        <td><xsl:value-of select="my:artist" /></td>
+                      </tr>
+                    </xsl:for-each>--> 
+                  </table>
+                </tr>
+                <br/>
+              </xsl:for-each>
+           </table>
+          
+          </div>
+        </div>
+      </body>
+
+    </html>
+
+  </xsl:template>
+</xsl:stylesheet>

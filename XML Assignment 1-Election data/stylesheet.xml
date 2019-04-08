@@ -1,0 +1,175 @@
+﻿<xsl:stylesheet version='1.0'
+          xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
+          xmlns:my="http://www.unigoa.ac.in/election" >
+
+  <xsl:template match="/">
+    <html>
+      <head>
+        <title>Election Results</title>
+      </head>
+      <body>
+        <div style="text-align:center">
+          <h1>ELECTION RESULTS</h1>
+          <br/>
+          <div style="text-align:left">
+            <table style="text-align:left;width:100%">
+              <xsl:for-each select="//my:constituency">
+                <xsl:variable name="var_ac_no" >
+                    <xsl:value-of select="@ac_no" />
+                </xsl:variable>
+                <!-- Print Constituency name -->
+                <tr>
+                  <td style="width:3%"><xsl:number value="position()" format="1."/><b>Constituency: <xsl:value-of select="my:const_name"/></b></td>
+                </tr>
+                <tr>
+                   <table border="1">
+                    <tr bgcolor="#9acd32">
+                      <th>Sr.No</th>
+                      <th>Candidate Name</th>
+                      <th>Party Name</th>
+                      <th>Votes</th>
+                      <th></th>
+                    </tr>
+                    <tr>
+                      <xsl:for-each select="//my:poll_results">
+                        <xsl:for-each select="//my:const_result">
+                          <xsl:variable name="var_con_id" select="@con_id"/>
+                          <xsl:choose>
+                            <xsl:when test="$var_con_id = $var_ac_no">
+                              <xsl:for-each select="child::*">
+                                <tr>
+                                <td><xsl:number value="position()" format="1"/></td>
+                                <!--Candidate Name-->
+                                <td>
+                                  <xsl:variable name="var_can_id" select="@can_id"/>
+                                  <xsl:for-each select="//my:candidate">
+                                    <xsl:variable name="var_c_id" select="@c_id"/>
+                                    <xsl:choose>
+                                      <xsl:when test="$var_c_id = $var_can_id">
+                                        <xsl:value-of select="my:c_name"/>                                          
+                                      </xsl:when>
+                                    </xsl:choose>  
+                                  </xsl:for-each>
+                                </td>
+                                <!--  
+                                <td>
+                                  <xsl:for-each select="//my:contestants">
+                                    <xsl:for-each select="//my:candidate">
+                                      <xsl:variable name="var_c_id" select="@c_id"/>
+                                      <xsl:variable name="var_can_id" select="@can_id"/>
+                                      <xsl:choose>
+                                        <xsl:when test="$var_c_id = $var_can_id">
+                                          <xsl:for-each select="child::*">
+                                            <b>var_c_id: <xsl:value-of select="$var_c_id"/></b><br/> 
+                                            <b>var_can_id: <xsl:value-of select="$var_can_id"/></b><br/>
+                                            <td><xsl:value-of select="c_name" /></td>                                          
+                                          </xsl:for-each>
+                                          <tr></tr>
+                                        </xsl:when>
+                                     </xsl:choose>
+                                    </xsl:for-each>
+                                  </xsl:for-each> 
+                                </td>-->
+                                <!--Party Name-->  
+                                <!--<td><xsl:value-of select="@party_id" /></td>-->
+                                <td>
+                                  <xsl:variable name="var_party_id" select="@party_id"/>
+                                  <xsl:for-each select="//my:party">
+                                    <xsl:variable name="var_party_acronym" select="@party_acronym"/>
+                                    <xsl:choose>
+                                      <xsl:when test="$var_party_acronym = $var_party_id">
+                                        <xsl:value-of select="my:full_name"/>                                          
+                                      </xsl:when>
+                                    </xsl:choose>  
+                                  </xsl:for-each>
+                                </td>  
+                                <td><xsl:value-of select="@vote_count" /></td>
+                                <td>
+                                  <xsl:choose>
+                                    <xsl:when test="position()=1">
+                                      <h5>WINNER</h5>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                      <h5></h5>
+                                    </xsl:otherwise>
+                                   </xsl:choose> 
+                                 </td>
+                               </tr>   
+                              </xsl:for-each>
+                            </xsl:when>
+                            <xsl:otherwise></xsl:otherwise>
+                          </xsl:choose>
+                        </xsl:for-each> 
+                      </xsl:for-each>                 
+                    </tr> 
+                   <!--<xsl:for-each select="//my:poll_results">-> 
+                    <!-<xsl:for-each select="//my:party_result">  ->
+                    <xsl:for-each select="//my:const_result">
+                      <xsl:sort select="@vote_count" data-type="number" order="descending"/>
+                      <xsl:variable name="var_con_id" select="@con_id" />
+                      <xsl:variable name="var_ac_no" select="//my:constituency/@ac_no"/>
+                      <!-<xsl:variable name="var_con_id" >
+                        <xsl:value-of select="@con_id" />
+                      </xsl:variable>
+                      <xsl:for-each select="//my:party_result">                      
+                        <!-<b>var_ac_no: <xsl:value-of select="$var_ac_no"/></b><br/> 
+                        <b>var_con_id: <xsl:value-of select="$var_con_id"/></b><br/>->
+                        <!-<xsl:if test="$var_ac_no = $var_con_id">->
+                        
+                        <xsl:choose>
+                          <xsl:when test="$var_ac_no = $var_con_id">
+                            <tr>
+                            <td><xsl:number value="position()" format="1"/></td>
+                            <td><xsl:value-of select="@can_id"/></td> 
+                            <td><xsl:value-of select="@party_id" /></td>
+                            <td><xsl:value-of select="@vote_count" /></td>
+                            <td>
+                              <xsl:choose>
+                                <xsl:when test="position()=1">
+                                  <h5>WINNER</h5>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                  <h5></h5>
+                                </xsl:otherwise>
+                               </xsl:choose> 
+                             </td>
+                           </tr>      
+                          </xsl:when>
+                          <xsl:otherwise></xsl:otherwise>
+                        </xsl:choose>
+                          
+                        <!-</xsl:if>->                                      
+                      </xsl:for-each>  
+                      <!-<xsl:call-template name="poll_results"/> 
+                      <xsl:sort select="@vote_count" data-type="number" order="descending"/>
+                        <tr>
+                          <td><xsl:number value="position()" format="1"/></td>
+                          <td><xsl:value-of select="@can_id"/></td> 
+                          <td><xsl:value-of select="@party_id" /></td>
+                          <td><xsl:value-of select="@vote_count" /></td>
+                          <td>
+                            <xsl:choose>
+                              <xsl:when test="position()=1">
+                                <h5>WINNER</h5>
+                              </xsl:when>
+                              <xsl:otherwise>
+                                <h5></h5>
+                              </xsl:otherwise>
+                            </xsl:choose> 
+                          </td>
+                       </tr>
+                      
+                    </xsl:for-each>-->  
+                  </table>
+                  <br/>
+                </tr>
+              </xsl:for-each>
+           </table>
+          </div>
+        </div>
+      </body>
+    </html>
+  </xsl:template>
+  
+      
+</xsl:stylesheet>
