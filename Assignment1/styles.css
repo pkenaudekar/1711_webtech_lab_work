@@ -1,7 +1,0 @@
-@charset "utf-8";
-/* CSS Document */
-
-#rtl{
-	writing-mode: vertical-rl;
-    text-orientation: upright;
-}
