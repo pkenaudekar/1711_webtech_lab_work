@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>Word Search</title>
+	<link href="styles.css" rel="stylesheet" type="text/css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="search.js" language="javascript" type="text/javascript"></script>
+	<!--<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>-->
+</head>
+
+	
+<body>
+	<div id="formcol">
+		<form id="frInput">
+			Sentance:<br>			
+			<textarea rows="6" cols="100" name="sentance" id="sentance"></textarea><br>
+			Search For:<br>
+			<input type="text" name="search" id="search"><br>
+			<input type="checkbox" name="wordboundary" value="word boundary" id="wordboundary">Word Boundary<br>
+  			<input type="checkbox" name="casesensitive" value="casesensitive" id="casesensitive">Case Sensitive<br>
+			<button type="submit" value="submit" onclick="StringSearch(event)">Search</button>
+		</form>
+		<div>
+			<p id="results"></p>				
+		</div>
+	</div>
+</body>
+</html>
